@@ -1,13 +1,26 @@
-name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+name: Modify README
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
-  check-bats-version:
+  modify-readme:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Modify README
+        run: |
+          echo "Success!!!😊" >> README.md
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "<>"
+          git add .
+          git commit -m "Update README with a message by GitHub Action"
+          git push
