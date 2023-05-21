@@ -3,7 +3,7 @@ name: Modify README
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   modify-readme:
